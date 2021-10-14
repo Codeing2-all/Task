@@ -1,0 +1,63 @@
+
+import Foundation
+import Glibc
+ 
+class  BankAccount {
+    var accountBalance:Float
+    var accountNumber:Int
+    var name:String
+    
+    func display()
+    {
+        print("Name\(name)")
+        print("Account Number\(accountNumber)")
+        print("Balance\(accountBalance)")
+    }
+    
+    init(_ number:Int,_ balance:Float,_ Name:String)
+    {
+        self.name=Name
+        self.accountNumber=number
+        self.accountBalance=balance
+    }
+    
+}
+class SavingAccount:BankAccount{
+    var interestRate:Float
+    
+    init(_ number:Int,_ balance:Float,_ Name:String,_ rate:Float)
+    {
+       self.interestRate=rate
+       super.init(number,balance,Name)
+    }
+    
+    
+    func calculateInterest()->Float
+    {
+        return interestRate*accountBalance/100
+    }
+    
+    override func display()
+    {
+        print("Name : \(name)")
+        print("Account Number : \(accountNumber)")
+        print("Balance : \(accountBalance)")
+        print("Interest: \(calculateInterest())")
+    }
+    
+}
+
+let s1=SavingAccount(1,7000.0,"Sharmila",5.0)
+s1.display()
+
+
+ 
+
+
+
+
+
+
+
+
+

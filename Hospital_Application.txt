@@ -1,0 +1,98 @@
+   import Foundation
+class Patient
+{
+    var name:String=""
+    var gender:String=""
+    var age:Int=0
+    var fee:Float=0
+    var tokenNo:Int=0
+    
+    static var tokenCounter:Int=0
+    init()
+    {
+        fee=450
+    }
+    init(n:String,gender:String,age:Int,fee:Float)
+    {
+        self.name=n
+        self.gender=gender
+        self.age=age
+        self.fee=fee
+    }
+    
+    func inputData()->Void
+    {
+        print("Enter patient name:")
+        self.name=readLine()!
+        print("Enter patient age:")
+        self.age=Int(readLine()!)!
+        print("Enter patient gender:")
+        self.gender=readLine()!
+        print("Enter patient Fee:")
+        self.fee=Float(readLine()!)!
+    }
+    func display()
+    {
+        print("\(tokenNo),Name:\(name),Age\(age),Gender\(gender)")
+    }
+    
+    func setTokenNo()
+    {
+        Patient.tokenCounter=Patient.tokenCounter+1
+        self.tokenNo=Patient.tokenCounter
+
+
+    }
+}
+
+
+var patientArray:[Patient]=[]
+
+while true
+{
+    print("1.Enter new Patient detail")
+    print("2.Remove Patient by tokenNo")
+    print("3.Display all Patient details")
+    print("4.Exit Application")
+    
+    print("Enter your choice[1-4]:") 
+    var choice=Int(readLine()!)!
+    
+    if(choice==4)
+    {
+        break
+    }
+    
+    switch choice
+    {
+        case 1:
+                var p=Patient()
+                p.inputData()
+                p.setTokenNo()
+                patientArray.append(p)
+                
+        case 2:
+             print("Enter tokenNo to remove:")
+             let tno=Int(readLine()!)!
+             for i in 0...patientArray.count-1{
+                 if(tno==patientArray[i].tokenNo){
+                     patientArray.remove(at:i)
+                 }
+             }
+             
+        case 3:
+              for p in patientArray
+              {
+                  p.display()
+              }
+              
+        default:
+                print("You enter wrong choice")
+              
+              
+                
+    }
+    
+    
+
+}
